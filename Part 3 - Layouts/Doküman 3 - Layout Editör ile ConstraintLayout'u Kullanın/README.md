@@ -144,7 +144,7 @@ android:layout_marginEnd="@dimen/margin_wide"
 4.Projeye yazı tipi ekle butonunu seçin.
 5.Tamamı tıklayın.
 
-![Uploading image.png…]()
+![image](https://user-images.githubusercontent.com/80598532/144382107-91a6df02-7b15-4f79-8191-107956a407cf.png)
 
 Bu, roboto.ttf yazı tipi dosyasını içeren bir res/font klasörü ekler.Ayrıca, text görünümünüz için @font/Roboto attribute'u ayarlanır.
 
@@ -173,9 +173,105 @@ Bu, roboto.ttf yazı tipi dosyasını içeren bir res/font klasörü ekler.Ayrı
 ```
 Bu stilde, arka plan rengi ve metin rengi varsayılan Android renk kaynaklarına ayarlanmıştır. Yazı tipi Roboto olarak ayarlanmıştır. Metin ortaya hizalanmış ve kalın yazılmıştır ve metin boyutu box_text_size olarak ayarlanmıştır.
 
+### 3.Adım: Text view için String kaynağı ekleyin.
+1. Attributes bölmesinde text attribute'ü bulun. (Anahtar simgesi olmayanı istiyorsunuz.)
+2. Resources iletişim kutusunu açmak için text attribute'ün yanındaki ... (üç nokta) öğesini tıklayın.
+3. Resources iletişim kutusunda  Add new resource > New string Value seçin. Kaynak adını box_one ve değeri Box One olarak ayarlayın.
+4. Tamam'ı tıklayın.
+
+![image](https://user-images.githubusercontent.com/80598532/144399405-969ba2c2-7ca7-4226-9c9d-6be4541b1834.png)
+
+### 4.Adım: Text View için Attributes ayarlarını tamamlayın.
+1. Attributes bölmesinde text view ID'yi box_one_text olarak ayarlayın
+2. Stili @style/whiteBox olarak ayarlayın.
+3. Kodu temizlemek için Text sekmesine geçin ve android:fontFamily="@font/roboto" attribute'unu kaldırın, çünkü bu yazı tipi whiteBox stilinde mevcuttur.
+4. Design sekmesine geri dönün. Design editor'ün üst kısmında, Device for preview (D) butonuna tıklayın. Farklı ekran konfigürasyonlarına sahip cihaz türlerinin bir listesi görüntülenir. Varsayılan cihaz Pixel'dir.
+![image](https://user-images.githubusercontent.com/80598532/144399564-0ec8598c-61ce-42cf-8f47-fa774a253d6f.png)
+
+5.Listeden farklı cihazlar seçin ve TextView'in farklı ekran konfigürasyonlarına nasıl uyum sağladığını görün.
+6.Uygulamanızı çalıştırın. "Box One" metniyle birlikte stil sahibi bir yeşil metin görünümü görürsünüz.
+![image](https://user-images.githubusercontent.com/80598532/144400237-3d32edaf-2783-4653-9deb-a0a0a7837592.png)
 
 
 ## <a name="4"></a>İkinci bir TextView Ekleyin ve Constrait Ekleyin (kısıtlamalar)
+Bu görevde, box_one_text'in altına başka bir text view eklersiniz. Yeni text view'i box_one_text ve layoutsun üst öğesiyle sınırlandırırsınız.
+
+### 1.Adım: Yeni bir Text View Ekleyin.
+1.Activity_main.xml dosyasını açın ve Layouts sekmesine geçin.
+
+2.Palet bölmesinden bir TextView'i aşağıda gösterildiği gibi doğrudan design editor önizlemesine sürükleyin. Text view'u sol kenar boşluğuyla hizalı olarak box_one_text'in altına yerleştirin.
+
+![image](https://user-images.githubusercontent.com/80598532/144400524-2e39d353-ea68-4acf-802a-fddb0725627c.png)
+
+3.Design editor'de, yeni text view'e tıklayın, ardından işaretçiyi text view'un üst tarafındaki noktanın üzerinde tutun. Aşağıda gösterilen bu noktaya kısıtlama tutamacı(constraint handle) denir.
+
+![image](https://user-images.githubusercontent.com/80598532/144401219-9ef641cb-9576-468f-9597-a35835b7c60e.png)
+
+İşaretçiyi kısıtlama tutamacı üzerinde tuttuğunuzda tutamaç yeşile döner ve yanıp söner.
+
+### 2.Adım: Yeni text view'a kısıtlamalar(constraints) ekleyin.
+Yeni text view'un üst kısmını Box One metin görünümününtext view'unun altına bağlayan bir kısıtlama oluşturun:
+
+1.Yeni text view'de işaretçiyi üst kısıtlama tutamacı üzerinde tutun.
+
+2.View'un üst kısıtlama tutamacına tıklayın ve yukarı sürükleyin. Bir kısıtlama çizgisi belirir. Kısıtlama çizgisini aşağıda gösterildiği gibi Box One text view'unun altına bağlayın.
+
+![image](https://user-images.githubusercontent.com/80598532/144402374-e675e86a-a60d-4434-9611-8662d5b9bb41.png)
+
+Tıklamayı bıraktığınızda, kısıtlama oluşturulur ve yeni text view Box One'ın altındaki 16 dp'lik mesafeye atlar. (Yeni text view'un üst kenar boşluğu 16 dp'dir çünkü bu, daha önce belirlediğiniz varsayılan değerdir.)
+
+Şimdi bir sol kısıtlama oluşturun:
+
+1.Yeni görünümün sol tarafındaki kısıtlama tutamacına tıklayın.
+
+2.Kısıtlama çizgisini layout'un sol kenarına sürükleyin.
+
+![image](https://user-images.githubusercontent.com/80598532/144404550-98392be7-cc5d-48e3-ab0e-073234f90fd8.png)
+
+
+İpucu: Görünüm denetçisini kullanarak da kısıtlamalar oluşturabilirsiniz. Örneğin, yeni metin kutusunda bir sol kısıtlama oluşturmak için:
+1.Önizlemede, seçmek için yeni metin kutusunu tıklayın.
+2.Görünüm denetçisinde, aşağıda gösterildiği gibi kutunun sol tarafındaki + simgesine ![image](https://user-images.githubusercontent.com/80598532/144404585-96609f92-47dd-48ee-9a75-7c4b37b08eff.png)
+ tıklayın.
+ 
+ 
+ ![image](https://user-images.githubusercontent.com/80598532/144404615-0bf437c9-71bd-473c-bc14-aef6a803f6f8.png)
+
+
+Bu şekilde bir kısıtlama oluşturduğunuzda, kısıtlama üst öğeye veya ona daha yakın bir görünüme eklenir.
+
+### 3.Adım: Yeni text view için attribute'leri ayarlayın.
+
+1.res/values/strings.xml dosyasını açın. Aşağıdaki kodla yeni bir dize kaynağı ekleyin:
+
+
+```
+<string name="box_two">Box Two</string>
+
+```
+
+2.Activity_main.xml dosyasını açın ve Design sekmesine tıklayın. Yeni text view'da aşağıdaki nitelikleri ayarlamak için Attributes bölmesini kullanın:
+
+
+| Attribute | Value |
+|---|---|
+| id | box_two_text |
+| layout_height | 130dp |
+| layout_width | 130dp |
+| style | @style/whiteBox |
+| stext | @string/box_two |
+
+Bu durumda, text view'un yüksekliği ve genişliği için sabit boyutlar atarsınız. Yalnızca görünümünüzün tüm cihazlarda ve düzenlerde her zaman sabit bir boyutu olması gerekiyorsa, yükseklik ve genişlik için sabit boyutlar atayın.
+
+
+*Önemli: Gerçek dünya uygulamaları geliştirirken, mümkün olduğunda UI öğelerinizin yüksekliği ve genişliği için esnek kısıtlamalar kullanın. Örneğin, match_constraint veya wrap_content kullanın. Uygulamanızda ne kadar sabit boyutlu UI öğeleri varsa, layoutunuz farklı ekran yapılandırmaları için o kadar az uyarlanabilir.*
+
+3.Uygulamanızı çalıştırın. Aşağıdaki ekran görüntüsüne benzer şekilde, biri diğerinin üzerinde iki yeşil TextView görünümü görmelisiniz:
+
+![image](https://user-images.githubusercontent.com/80598532/144404692-45fcdc48-48b2-4340-9790-edef7b7ceb60.png)
+
+
+
 ## <a name="5"></a>TextView Görünümleri Zinciri Oluşturun
 ## <a name="6"></a>Text görünümerine ClickHandler Ekleyin
 ## <a name="7"></a>Temel Constrait Ekleyin
